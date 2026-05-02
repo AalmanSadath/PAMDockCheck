@@ -125,20 +125,20 @@ sudo nano /etc/authselect/custom/dockprofile/system-auth
 Find this line:
 
 ```
-auth        sufficient                                   pam_fprintd.so                                           {include if "with-fingerprint"}
+auth sufficient pam_fprintd.so {include if "with-fingerprint"}
 ```
 
 Insert a new line immediately above it:
 
 ```
-auth        [success=1 default=ignore]                   pam_dock_check.so                                        {include if "with-fingerprint"}
+auth [success=1 default=ignore] pam_dock_check.so {include if "with-fingerprint"}
 ```
 
 So the section looks like this:
 
 ```
-auth        [success=1 default=ignore]                   pam_dock_check.so                                        {include if "with-fingerprint"}
-auth        sufficient                                   pam_fprintd.so                                           {include if "with-fingerprint"}
+auth [success=1 default=ignore] pam_dock_check.so {include if "with-fingerprint"}
+auth sufficient                 pam_fprintd.so    {include if "with-fingerprint"}
 ```
 
 Save and exit (`Ctrl+X`, `Y`, `Enter` in nano).
